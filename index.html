@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>js</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="visually-hidden">City of Sedona</h1>
+        <!--<script>
+          let admin;
+          let name;
+          name = "Djon";
+          admin = name;
+          alert(admin);
+        </script>-->
+        <script src="js/tasks/task5.js"></script>
+      <div class="main-header__wrapper">
+        <a class="logo main-header__logo">
+          <picture class="logo__picture">
+            <source media="(min-width: 1200px)" srcset="img/logo-sedona-desktop.svg">
+            <source media="(min-width: 768px)" srcset="img/logo-sedona-tablet.svg">
+            <img src="img/logo-sedona-mobile.svg" width="102" height="83" alt="Седона-логотип" class="logo__img logo__img--index">
+          </picture>
+        </a>
+        <nav class="main-header__navigation">
+          <ul class="main-menu">
+            <li class="main-menu__item">
+              <a class="main-menu__link main-menu__link--current">Главная</a>
+            </li>
+            <li class="main-menu__item">
+              <a href="photo.html" class="main-menu__link">Фото и видео</a>
+            </li>
+            <li class="main-menu__item">
+              <a href="form.html" class="main-menu__link">Форма отзыва</a>
+            </li>
+            <li class="main-menu__item">
+              <a href="https://htmlacademy.ru" class="main-menu__link">HTML Academy</a>
+            </li>
+          </ul>
+          <div class="main-header__btn-wrapper">
+            <button type="button" class="main-header__btn">
+              <span class="visually-hidden">Закрыть меню</span>
+            </button>
+          </div>
+        </nav>
+      </div>
+      <div class="main-header__wrap main-header__wrap--index">
+        <p class="main-header__img-wrapper main-header__img-wrapper--index" style="background-color: rgba(129, 179, 210, 1);">
+          <img src="img/text-sedona-index.svg" width="280" height="213" alt="Welcome to Sedona" class="main-header__img main-header__img--index"> <!--или здесь img/text-sedona and class="main-header__img--index"-->
+        </p>
+      </div>
+    </header>
+    <section class="attraction">
+      <div class="intro attraction__caption">
+        <h2 class="intro__caption">Седона — небольшой городок в Аризоне, заслуживающий большего!</h2>
+        <p class="intro__text">Рассмотрим 5 причин, по которым Седона круче, чем Гранд-Каньон!</p>
+      </div>
+      <ol class="attraction__list">
+        <li class="attraction__item">
+          <div class="card card--with-img">
+            <div class="card__description card__description--blue card__description--triangle description">
+              <h3 class="description__caption description__caption--light">Настоящий городок</h3>
+              <p class="description__text">Седона не аттракцион для туристов, там течет своя жизнь</p>
+            </div>
+            <p class="card__img-wrapper">
+              <picture>
+                <source media="(min-width: 1200px)" srcset="img/main-city-desktop@2x.jpg 2x, img/main-city-desktop@1x.jpg 1x">
+                <source media="(min-width: 768px)" srcset="img/main-city-tablet@2x.jpg 2x, img/main-city-tablet@1x.jpg 1x">
+                <img src="img/main-city-mobile@1x.jpg" srcset="img/main-city-mobile@2x.jpg 2x" alt="Городок Седона" class="card__img">
+              </picture>
+            </p>
+          </div>
+        </li>
+        <li class="attraction__item">
+          <div class="card card--with-img card--with-img-reverse">
+            <div class="card__description card__description--blue description">
+              <h3 class="description__caption description__caption--light">Там есть мост дьявола</h3>
+              <p class="description__text description__text--number2">Да, по нему можно пройти! Если вы осмелитесь, конечно</p>
+            </div>
+            <p class="card__img-wrapper">
+              <picture>
+                <source media="(min-width: 1200px)" srcset="img/main-bridge-desktop@2x.jpg 2x, img/main-bridge-desktop@1x.jpg 1x">
+                <source media="(min-width: 768px)" srcset="img/main-bridge-tablet@2x.jpg 2x, img/main-bridge-tablet@1x.jpg 1x">
+                <img src="img/main-bridge-mobile@1x.jpg" srcset="img/main-bridge-mobile@2x.jpg 2x" alt="Мост дьявола" class="card__img">
+              </picture>
+            </p>
+          </div>
+        </li>
+        <li class="attraction__item">
+          <div class="card">
+            <div class="card__description card__description--border card__description--border-first description">
+              <h3 class="description__caption">Небольшая площадь</h3>
+              <p class="description__text description__text--number3">Все интересные места находятся очень близко</p>
+            </div>
+          </div>
+        </li>
+        <li class="attraction__item">
+          <div class="card">
+            <div class="card__description card__description--border description">
+              <h3 class="description__caption">Красивая дорога</h3>
+              <p class="description__text description__text--number4">Ехать в Седону из Лас-Вегаса совсем не скучно!</p>
+            </div>
+          </div>
+        </li>
+        <li class="attraction__item">
+          <div class="card">
+            <div class="card__description card__description--border card__description--border-last description">
+              <h3 class="description__caption">Мало туристов</h3>
+              <p class="description__text description__text--number5">Большинство едет в гранд каньон и толпится там</p>
+            </div>
+          </div>
+        </li>
+        <li class="information attraction__item" style="list-style-type: none;">
+          <h3 class="information__caption visually-hidden">Разное</h3>
+          <ul class="information__list">
+            <li class="information__item">
+              <div class="card">
+                <div class="card__description card__description--information card__description--information-first description">
+                  <h4 class="description__caption description__caption--information description__caption--information-house">Жильё</h4>
+                  <p class="description__text description__text--information">Рекомендуем пожить в настоящем мотеле, все как в кино!</p>
+                </div>
+              </div>
+            </li>
+            <li class="information__item">
+              <div class="card">
+                <div class="card__description card__description--information description">
+                  <h4 class="description__caption description__caption--information description__caption--information-gift">Сувениры</h4>
+                  <p class="description__text description__text--information">Не только китайского, но и местного производства!</p>
+                </div>
+              </div>
+            </li>
+            <li class="information__item">
+              <div class="card">
+                <div class="card__description card__description--information card__description--information-last description">
+                  <h4 class="description__caption description__caption--information description__caption--information-food">Еда</h4>
+                  <p class="description__text description__text--information">Всегда заказывайте фирменный бургер, вы не разочаруетесь!</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+    <section class="hotel-offer">
+      <h2 class="hotel-offer__caption visually-hidden">Найти гостиницу</h2>
+      <div class="postamble hotel-offer__info">
+        <b class="postamble__caption">Заинтересовались?</b>
+        <p class="postamble__text">Укажите предполагаемые даты поездки, и мы покажем вам лучшие предложения гостиниц в Седоне</p>
+        <a href="#" class="postamble__btn btn">Найти гостиницу</a>
+      </div>
+    </section>
+    <section id="map" class="map"></section>
+    <footer class="main-footer main-footer--index">
+      <b class="main-footer__visit">#visitsedona</b>
+      <section class="networks main-footer__networks">
+        <ul class="networks__list">
+          <li class="networks__item networks__item--first">
+            <a href="#" class="networks__link">
+              <span class="visually-hidden">Twitter</span>
+              <svg width="46" height="48" class="networks__img networks__img--twitter">
+                <use xlink:href="#icon-twitter"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="networks__item networks__item--facebook">
+            <a href="#" class="networks__link">
+              <span class="visually-hidden">Facebook</span>
+              <svg width="46" height="48" class="networks__img networks__img--facebook">
+                <use xlink:href="#icon-facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="networks__item networks__item--last networks__item--youtube">
+            <a href="#" class="networks__link">
+              <span class="visually-hidden">Youtube</span>
+              <svg width="46" height="48" class="networks__img networks__img--youtube" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <use xlink:href="#icon-youtube"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="copyright main-footer__copyright main-footer__copyright--index">
+        <p class="copyright__info">Разработано</p>
+        <a href="https://htmlacademy.ru" aria-label="Переход на сайт HTML Academy" class="copyright__link">
+          <svg role="img" width="27" height="34" class="copyright__icon">
+            <use xlink:href="#icon-htmlacademy"></use>
+          </svg>
+        </a>
+      </section>
+    </footer>
+  </body>
+</html>
