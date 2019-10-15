@@ -6,7 +6,7 @@ if (login==="admin") {
   parol=prompt("введите пароль");
   if (parol==="я главный") {
     alert("здравствуйте!");
-  } else if (parol=="" || parol==null) {
+  } else if (parol=="" || parol==null) { // "" - если пользователь нажал ок без значения null - если пользователь нажал cancel
     alert("отменено");
   } else {
     alert("неверный пароль");
