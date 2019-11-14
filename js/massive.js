@@ -229,7 +229,7 @@ styles.unshift("Рэп", "Регги");
 console.log(styles);
 */
 
-//task 18
+/*task 18
 
 //Напишите функцию sumInput(), которая:
 //Просит пользователя ввести значения, используя prompt и сохраняет их в массив.
@@ -264,3 +264,4 @@ function sumInput() {
 }
 
 sumInput();
+*/
