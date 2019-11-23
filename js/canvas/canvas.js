@@ -18,9 +18,9 @@ let attractions = [
 let empty = []
 
 const CLOUD_WIDTH = 1200;
-const CLOUD_HEIGHT = 800;
+const CLOUD_HEIGHT = 600;
 const ClOUD_INDENT = CLOUD_WIDTH/20;
-const ClOUD_FONT = "24px sans-serif";
+const ClOUD_FONT = "30px sans-serif";
 const ARR_INDENT = 2.5;
 
 /*let attractionsNumber = attractions.length;
