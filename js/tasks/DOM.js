@@ -138,7 +138,7 @@ function counterCollectionsChildren(nameCollection) {
 //Какое место он занимает в DOM-иерархии?
 //Наследует ли он от Node или от Element, или может от HTMLElement?
 
-
+/*
 //узнаем имя класса дом-узла, используя свойство конструктор
 console.log(document.constructor);
 //выведем имя дом узла
@@ -183,3 +183,52 @@ console.log(HTMLDocument.prototype.constructor === HTMLDocument); //true
 // и увидеть имена функций-конструкторов, открыв _proto_. 
 // браузерная консоль берет их как раз из свойства constructor
 console.dir(document);
+*/
+
+//task #5 DOM-атрибуты
+//Напишите код для выбора элемента с атрибутом data-widget-name 
+//из документа и прочитайте его значение.
+/*
+let attr = document.querySelectorAll("[data-widget-name]");//получим статистическую коллекцию
+//метод
+//let attr = document.getElementsByName("data-widget-name");//*получим живую коллекцию
+//в данном случае не работает, т.к он работает только с теми элементами, 
+//для которых в спецификации явно предусмотрен атрибут name: 
+//это form, input, a, select, textarea и ряд других
+
+//перебираем элементы коллекции
+function readDatasetElementValue(nameCollection) {
+  for (let elem of nameCollection) {
+    return (elem.dataset.widgetName);
+  }
+}
+
+//или же все атрибуты элемента, стандартные и нестандартные 
+//можно получить используя elem...Attribute:
+
+console.log(attr[0].getAttribute("data-widget-name"));
+*/
+
+//task #6
+//Сделайте все внешние ссылки оранжевыми, изменяя их свойство style.
+//Ссылка является внешней, если:
+//Её href содержит ://
+//Но не начинается с http://internal.com.
+/*
+let links = document.getElementsByTagName("a");
+for (let link of links) {
+  //let href = link.href;
+  //используем link.getAttribute('href'). 
+  //Не link.href, потому что нам нужно значение из HTML
+  let href = link.getAttribute("href");
+  if (!href) continue; // нет атрибута
+  if (!href.includes('://')) continue; // нет протокола
+  if (href.startsWith('http://internal.com')) continue; // внутренняя
+  link.style.color = "orange";
+}
+
+//есть еще один способ - добавить проверку в css-селектор
+/*let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+//тогда
+let links = document.querySelectorAll(selector)*/
+
