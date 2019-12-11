@@ -58,7 +58,7 @@ function showColorCells(number, color) {
 //Первый input в этой форме.
 //Последний input в этой форме.
 
-let table = document.getElementById("age-table");
+/*let table = document.getElementById("age-table");
 //alert(table);
 let table_labels = table.querySelectorAll("label");
 //alert(table_labels.length);
@@ -71,13 +71,115 @@ for (let elem of form) {
   let form_inputs = elem.querySelectorAll("input");
   //или
   //let form_inputs = form.getElementsByTagName("input");
-  alert(form_inputs.length);
+  //alert(form_inputs.length);
   let form_input_first = form_inputs[0];
-  alert(form_input_first.innerHTML);
+  //alert(form_input_first.innerHTML);
+  console.log(form_input_first);
   let form_input_last = form_inputs[(form_inputs.length - 1)];
-  alert(form_input_last.innerHTML);
+  //alert(form_input_last.innerHTML);
+}*/
+
+//task #4
+
+//У нас есть дерево, структурированное как вложенные списки ul/li.
+//Напишите код, который выведет каждый элемент списка <li>:
+//Какой в нём текст (без поддерева) ?
+//Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
+
+let innerLi = document.querySelectorAll("ul > li");
+
+//перебираем все элементы:
+function innerHtmlElem(nameCollection) {
+  for (let elem of nameCollection) {
+    return elem.innerHTML;
+  }
 }
 
+function outerHtmlElem(nameCollection) {
+  for (let elem of nameCollection) {
+    return elem.outerHTML;
+  }
+}
+
+//вывод текста без поддерева
+function writeTextContentElem(nameCollection) {
+  for (let elem of nameCollection) {
+    return elem.textContent;
+  }
+}
+
+//or
+
+function writeTypeElem(nameCollection) {
+  for (let elem of nameCollection) {
+    return elem.nodeType;
+  }
+}
+
+//считаем число всех вложенных в ul li
+function countChildren(nameCollection) {
+  let i = 0;
+  for (let elem of nameCollection) {
+    i++;
+  }
+  return i;
+}
+
+//or
+
+function counterCollectionsChildren(nameCollection) {
+  let counter = nameCollection.length;
+  return counter;
+}
+
+//task #4 DOM - узлы. типы, свойства, содержимое.
+
+//Объектом какого класса является document?
+//Какое место он занимает в DOM-иерархии?
+//Наследует ли он от Node или от Element, или может от HTMLElement?
 
 
+//узнаем имя класса дом-узла, используя свойство конструктор
+console.log(document.constructor);
+//выведем имя дом узла
+console.log(document.constructor.name);
+//console.log выводит элемент в виде дом-дерева
+console.log(document);
+//Console. dir это способ посмотреть в консоли 
+//свойства заданного javascript объекта
+console.dir(document);
+console.log(document.textContent);
 
+//for body:
+console.log("body.constructor " + document.body.constructor);
+console.log("body.constructor.name " + document.body.constructor.name);
+console.log("document.body tageName " + document.body.tagName);
+console.log("document.body nodeName " + document.body.nodeName);
+console.log("document.body nodeType " + document.body.nodeType);
+console.log("document.body textContent " + document.body.textContent);
+console.log("console.log document.body " + document.body);
+console.log(document.body);
+console.dir("console.dir document.body " + document.body);
+console.dir(document.body);
+
+
+//объектом какого класса является document можно выяснить так:
+console.log(document);//[jbject HTMLDocument]
+//or
+console.log(document.constructor.name)//HTMLDocument
+//т.е document - объект класса HTMLDocument
+//какое место он занимает в иерархии?
+//пройдем по цепочке прототипов _proto_
+//методы класса находятся в prototype котструктора. 
+//так, в HTMLDocument.prototype находятся методы для объектов типа document
+//также внутки prototype есть ссылка на функцию-конструктоз:
+console.log(HTMLDocument.prototype.constructor === HTMLDocument); //true
+//чтобы получить имя класса в стороковой форме, используем constructor.name
+//сделаем это для всей цепочки прототипов document вверх до класса Node
+//console.log(HTMLDocument.prototype.constructor.name); //HTMLDocument
+//console.log(HTMLDocument.prototype._proto_.constructor.name); //Document
+//console.log(HTMLDocument.prototype._proto_._proto_.constructor.name); //Node
+//еакже можем исследовать объект с помощью console.dir(documetn) 
+// и увидеть имена функций-конструкторов, открыв _proto_. 
+// браузерная консоль берет их как раз из свойства constructor
+console.dir(document);
