@@ -86,7 +86,7 @@ for (let elem of form) {
 //Какой в нём текст (без поддерева) ?
 //Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
 
-let innerLi = document.querySelectorAll("ul > li");
+/*let innerLi = document.querySelectorAll("ul > li");
 
 //перебираем все элементы:
 function innerHtmlElem(nameCollection) {
@@ -130,7 +130,7 @@ function countChildren(nameCollection) {
 function counterCollectionsChildren(nameCollection) {
   let counter = nameCollection.length;
   return counter;
-}
+}*/
 
 //task #4 DOM - узлы. типы, свойства, содержимое.
 
@@ -231,4 +231,270 @@ for (let link of links) {
 /*let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
 //тогда
 let links = document.querySelectorAll(selector)*/
+
+//task #7
+
+//У нас есть пустой DOM-элемент elem и строка text.
+//Какие из этих 3-х команд работают одинаково?
+//1. elem.append(document.createTextNode(text))
+//2. elem.innerHTML = text
+//3. elem.textContent = text
+
+let div1 = document.getElementById("elem1");
+let div2 = document.getElementById("elem2");
+let div3 = document.getElementById("elem3");
+let text = "<b>text</b>"
+
+div1.append(document.createTextNode(text));//вставляет text как текст
+div2.innerHTML = text;//вставляет text как элемент HTML
+div3.textContent = text;//вставляет text как текст
+
+//task #8 
+//Создайте функцию clear(elem), которая удаляет всё содержимое из elem.
+
+//DOM не поддерживает удаления элемента напрямую. 
+//При удалении элемента с JavaScript, 
+//вы должны сначала перейти на его РОДИТЕЛЕЙ. 
+//Это процесс всегда был странным и не таким простым.
+
+//Пуленепробиваемый путь:
+//Предположим, что у нас есть следующий HTML элемент:
+//<div id="myDiv">test</div>
+//чтобы удалить его из дерева DOM, вам нужно будет выполнить следующие линии JavaScript’а:
+//var elem = document.getElementById("myDiv");
+//elem.parentNode.removeChild(elem);
+
+function clear(elem) {
+  let list = document.getElementById(elem);
+  while (list.firstChild) {
+  list.firstChild.remove();
+  }
+  /*for (let i = 0; i<list.children.length; i++) {//удален только 1-й li
+    list.children[i].remove();
+  }*/
+//цикл for не работает, потому что вызов remove() 
+//сдвигает коллекцию elem.childNodes, 
+//поэтому элементы начинаются каждый раз с индекса 0. 
+//А i увеличивается, и некоторые элементы будут пропущены.
+//Цикл for..of делает то же самое.
+}
+
+clear("element");
+
+function clear1(element) { //не понимаю, как работает эта функция???
+  while (element.firstChild) {
+    element.firstChild.remove();
+  }
+}
+
+function clear3(element) {//и как это работает не понимаю???
+  element.innerHTML = '';
+}
+
+//task #9
+
+// почему в документе остался текст "ааа"??
+function deleteText(elem) {
+  alert(elem); // таблица, как и должно быть
+  table.remove();
+}
+//deleteText(table)
+//HTML в задаче некорректен. В этом всё дело.
+//Браузер исправил ошибку автоматически. Но внутри <table> не может быть текста: 
+//в соответствии со спецификацией допускаются только табличные теги. 
+//Поэтому браузер добавляет "aaa" до <table>.
+//Теперь очевидно, что когда мы удаляем таблицу, текст остаётся.
+//На этот вопрос можно легко ответить, изучив DOM, 
+//используя инструменты браузера. 
+//Там можно увидеть "aaa" до элемента <table>.
+//Вообще, в стандарте HTML описано, 
+//как браузеру обрабатывать некорректный HTML, 
+//так что такое действие браузера является правильным.
+
+//task #10
+
+//Напишите интерфейс для создания списка.
+//Для каждого пункта:
+//Запрашивайте содержимое пункта у пользователя с помощью prompt.
+//Создавайте элемент <li> и добавляйте его к <ul>.
+//Процесс прерывается, когда пользователь нажимает Esc 
+//или вводит пустую строку.
+//Все элементы должны создаваться динамически.
+//Если пользователь вводит HTML-теги -– пусть в списке 
+//они показываются как обычный текст.
+/*
+let whereAdd = document.getElementById("task2");
+//alert(whereAdd);
+let list = document.createElement("ul");
+whereAdd.before(list);
+//или можно сразу обратится к узлу по id:
+//task2.before(list);
+//или все что выше можно сделать следующим образом:
+task2.insertAdjacentHTML("beforebegin", "<ul></ul>")
+let message = prompt("введите ваше сообщение");
+while (!!message == true) { //!!message переводи сообщение в логический тип
+  //пустая строка или null - false
+  let li = document.createElement("li");
+  //li.innerHTML = message; //если введем <a>jsdlg</a> на странице отразится jsdlg, теги - в разметке страницы
+  li.textContent = message;//если введем <a>jsdlg</a> - так и отразится на странице
+  //inner.HTML позволяет получить html содержимое в виде строки
+  //textContent предоставляет доступ к тексту внутри элемента за вычетом всех тегов
+  list.append(li);
+  message = prompt("введите ваше сообщение");
+}
+*/
+
+//task #11
+//Напишите функцию createTree, 
+//которая создаёт вложенный список ul/li из объекта.
+/*
+let objForTree = {
+  "Рыбы": {
+    "форель": {},
+    "лосось": {}
+  },
+
+  "Деревья": {
+    "Огромные": {
+      "секвойя": {},
+      "дуб": {}
+    },
+    "Цветковые": {
+      "яблоня": {},
+      "магнолия": {}
+    }
+  }
+};
+let objEmpty = {};
+
+function createTree(where, objName) {
+  if (isEmpty(objName)) {
+  where.before(createUl(objName));
+  } else alert("Объект пуст");
+}
+
+function createUl(objName) {
+  let ul = document.createElement("ul");
+  //let ul = "<ul>" + "</ul>";
+  //task2.insertAdjacentHTML("beforebegin", ul);
+  //createLi
+  for (let key in objName) {
+    let li = document.createElement("li");
+    ul.append(li);
+    let textContentli = key;
+    li.textContent = textContentli;
+    if (isEmpty(objName[key])) {
+      //когда функция вызывает сама себя - 
+      //Это как раз и называется рекурсией.
+      createUl(objName[key]);
+      li.append(createUl(objName[key]));
+    }
+  }
+  return ul;
+}
+
+function isEmpty(objName) {
+  for (let key in objName) {
+    return true;
+  }
+  //alert("объект пуст");
+  return false;
+}
+
+createTree(task2, objForTree);
+//createTree(task2, objEmpty);
+*/
+
+//task #12
+//Есть дерево, организованное в виде вложенных списков ul/li.
+//Напишите код, который добавит каждому элементу списка <li> 
+//количество вложенных в него элементов. 
+//Узлы нижнего уровня, без детей – пропускайте.
+
+let objForTree = {
+  "Рыбы": {
+    "форель": {},
+    "лосось": {}
+  },
+
+  "Деревья": {
+    "Огромные": {
+      "секвойя": {},
+      "дуб": {}
+    },
+    "Цветковые": {
+      "яблоня": {},
+      "магнолия": {},
+      "груша": {}
+    }
+  }
+};
+let objEmpty = {};
+
+function createTree(where, objName) {
+  if (isEmpty(objName)) {
+  where.append(createUl(objName));
+  } else alert("Объект пуст");
+}
+
+function createUl(objName) {
+  let ul = document.createElement("ul");
+  for (let key in objName) {
+    let li = document.createElement("li");
+    let textContentli;
+    ul.append(li);
+    textContentli = key;
+    li.textContent = textContentli;
+    if (isEmpty(objName[key])) {
+      //когда функция вызывает сама себя - 
+      //Это как раз и называется рекурсией.
+      createUl(objName[key]);
+      li.after(createUl(objName[key]));
+    }
+  }
+  return ul;
+}
+
+function isEmpty(objName) {
+  for (let key in objName) {
+    return true;
+  }
+  //alert("объект пуст");
+  return false;
+}
+
+createTree(task12a, objForTree);
+
+function addCountChildren(id) {
+  let list = document.getElementById(id);
+  let collectionUl = list.getElementsByTagName("ul");
+  for (let ul of collectionUl) {
+    let allUl = ul.getElementsByTagName("ul");
+    let counterUl = allUl.length;
+    if (counterUl == 0) continue;
+    let collectionChildren = ul.children; //получим коллекцию детей li and ul
+    for (let child of collectionChildren) {
+      console.log("tagName: " + child.tagName);
+      if (child.tagName === "LI") {
+        let siblingUl = child.nextElementSibling;
+        if (siblingUl == null) continue;
+          let counter = siblingUl.getElementsByTagName("li").length;
+          child.innerHTML += "[" + counter + "]";
+      }
+    }
+  }
+}
+
+addCountChildren("task12");
+//addCountChildren("task12a");
+
+//task13
+
+//Напишите функцию createCalendar(elem, year, month).
+//Вызов функции должен создать календарь для заданного 
+//месяца month в году year и вставить его в elem.
+//Календарь должен быть таблицей, где неделя – это <tr>, 
+//а день – это <td>. 
+//У таблицы должен быть заголовок с названиями дней недели, 
+//каждый день – <th>, первым днём недели должен быть понедельник.
 
