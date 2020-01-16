@@ -29,7 +29,7 @@
 //Вам нужно получить из таблицы <table> 
 //все диагональные <td> и выделить их, используя код:
 
-//  в переменной td находится DOM-элемент для тега <td>
+//в переменной td находится DOM-элемент для тега <td>
 //td.style.backgroundColor = 'red';
 /*document.body.children[2].rows[0].cells[0].style.backgroundColor = "red";
 document.body.children[2].rows[1].cells[1].style.backgroundColor = "red";
@@ -37,8 +37,8 @@ document.body.children[2].rows[2].cells[2].style.backgroundColor = "red";
 document.body.children[2].rows[3].cells[3].style.backgroundColor = "red";
 document.body.children[2].rows[4].cells[4].style.backgroundColor = "red";
 */
-function showColorCells(number, color) {
-  let table = document.body.children[number];
+function showColorCells(id, color) {
+  let table = document.getElementById(id);
   //alert(table.rows.length);
   for (let i = 0; i < table.rows.length; i++) {
     let row = table.rows[i];//получаем доступ к коллекции строк таблицы
@@ -46,7 +46,7 @@ function showColorCells(number, color) {
   }
 }
 
-//showColorCells(2, "red");
+showColorCells("task2", "red");
 
 //task #3
 //Вот документ с таблицей и формой.
@@ -279,7 +279,7 @@ function clear(elem) {
 //Цикл for..of делает то же самое.
 }
 
-clear("element");
+//clear("element");
 
 function clear1(element) { //не понимаю, как работает эта функция???
   while (element.firstChild) {
@@ -322,27 +322,32 @@ function deleteText(elem) {
 //Все элементы должны создаваться динамически.
 //Если пользователь вводит HTML-теги -– пусть в списке 
 //они показываются как обычный текст.
-/*
-let whereAdd = document.getElementById("task2");
-//alert(whereAdd);
-let list = document.createElement("ul");
-whereAdd.before(list);
-//или можно сразу обратится к узлу по id:
-//task2.before(list);
-//или все что выше можно сделать следующим образом:
-task2.insertAdjacentHTML("beforebegin", "<ul></ul>")
-let message = prompt("введите ваше сообщение");
-while (!!message == true) { //!!message переводи сообщение в логический тип
-  //пустая строка или null - false
-  let li = document.createElement("li");
-  //li.innerHTML = message; //если введем <a>jsdlg</a> на странице отразится jsdlg, теги - в разметке страницы
-  li.textContent = message;//если введем <a>jsdlg</a> - так и отразится на странице
-  //inner.HTML позволяет получить html содержимое в виде строки
-  //textContent предоставляет доступ к тексту внутри элемента за вычетом всех тегов
-  list.append(li);
-  message = prompt("введите ваше сообщение");
+function createList(where) {
+  let whereAdd = document.getElementById(where);
+  //alert(whereAdd);
+  let headerline = document.createElement("h2");
+  headerline.innerHTML = "task #10: напишите интерфейс для создания списка. для каждого пункта запрашивайте содержимое у пользователя...";
+  whereAdd.prepend(headerline);
+  let list = document.createElement("ul");
+  whereAdd.before(list);
+  //или можно сразу обратится к узлу по id:
+  //task2.before(list);
+  //или все что выше можно сделать следующим образом:
+  task2.insertAdjacentHTML("beforebegin", "<ul></ul>")
+  let message = prompt("введите ваше сообщение");
+  while (!!message == true) { //!!message переводи сообщение в логический тип
+    //пустая строка или null - false
+    let li = document.createElement("li");
+    //li.innerHTML = message; //если введем <a>jsdlg</a> на странице отразится jsdlg, теги - в разметке страницы
+    li.textContent = message;//если введем <a>jsdlg</a> - так и отразится на странице
+    //inner.HTML позволяет получить html содержимое в виде строки
+    //textContent предоставляет доступ к тексту внутри элемента за вычетом всех тегов
+    list.append(li);
+    message = prompt("введите ваше сообщение");
+  }
 }
-*/
+//createList("task2");
+
 
 //task #11
 //Напишите функцию createTree, 
@@ -369,7 +374,10 @@ let objEmpty = {};
 
 function createTree(where, objName) {
   if (isEmpty(objName)) {
-  where.before(createUl(objName));
+    let headline = document.createElement("h2");
+    headline.innerHTML = "task #11: создать вложенный список из массива";
+    where.prepend(headline);
+    where.before(createUl(objName));
   } else alert("Объект пуст");
 }
 
@@ -433,7 +441,10 @@ let objEmpty = {};
 
 function createTree(where, objName) {
   if (isEmpty(objName)) {
-  where.append(createUl(objName));
+    let headline = document.createElement("h2");
+    headline.innerHTML = "task #11: создать вложенный список из массива";
+    where.prepend(headline);
+    where.append(createUl(objName));
   } else alert("Объект пуст");
 }
 
@@ -466,7 +477,10 @@ function isEmpty(objName) {
 createTree(task12a, objForTree);
 
 function addCountChildren(id) {
+  let headline = document.createElement("h2");
+  headline.innerHTML = "task #12: Напишите код, который добавит каждому элементу списка li количество вложенных в него элементов. Узлы нижнего уровня, без детей – пропускайте";
   let list = document.getElementById(id);
+  list.before(headline);
   let collectionUl = list.getElementsByTagName("ul");
   for (let ul of collectionUl) {
     let allUl = ul.getElementsByTagName("ul");
@@ -474,7 +488,7 @@ function addCountChildren(id) {
     if (counterUl == 0) continue;
     let collectionChildren = ul.children; //получим коллекцию детей li and ul
     for (let child of collectionChildren) {
-      console.log("tagName: " + child.tagName);
+      //console.log("tagName: " + child.tagName);
       if (child.tagName === "LI") {
         let siblingUl = child.nextElementSibling;
         if (siblingUl == null) continue;
@@ -497,4 +511,276 @@ addCountChildren("task12");
 //а день – это <td>. 
 //У таблицы должен быть заголовок с названиями дней недели, 
 //каждый день – <th>, первым днём недели должен быть понедельник.
+let week = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+let months = ["январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"];
 
+function createCalendar(elem, year, month) {
+  insertHeadline(elem, "task #13: написать функцию, создающую календарь для заданного месяца в году");
+  let table = document.createElement("table");
+  elem.append(table);
+  table.id = "tableTask13";
+  let tRow = document.createElement("tr");//создали элемент tr
+  table.append(tRow);//вставляем элумент в узел
+  for (let day of week) {
+  let th = document.createElement("th");
+  th.innerHTML = day;
+  tRow.append(th);
+  }
+  let firstDayMonth = new Date(year, month-1);
+  let firstDayName = firstDayMonth.getDay();//получим первый день месяца
+  //вставим пустые ячейки до первого дня месяца:
+  let tr = document.createElement("tr");
+  table.append(tr);
+  for (let i = 0; i < firstDayName; i++) {
+    let td = document.createElement("td");
+    td.innerHTML = "";
+    tr.prepend(td);
+  }
+  //в остальные ячейки вставим даты
+  let lastDayMonth = new Date(year, month, 1-1);//получим последний день месяца
+  let lastDayDate = lastDayMonth.getDate();//последний день месяца (число)
+  let lastDayName = lastDayMonth.getDay();//последний день месяца (день)
+  let i = 0;
+  let createTd = function(where) {
+    for (; i < lastDayDate;) {
+      i++;
+      let newData = new Date(year, month - 1, i);
+      let newDataDayName = newData.getDay();
+      let td = document.createElement("td");
+      where.append(td);
+      td.innerHTML = i;
+      if (newDataDayName == 6){
+        let trow = document.createElement("tr");
+        table.append(trow);
+        createTd(trow);
+      }
+    }
+  };
+  createTd(tr);
+  //вставим пустые ячейки после последнего дня месяца:
+  for (let i = lastDayName; i < 6; i++) {
+    let td = document.createElement("td");
+    td.innerHTML = "";
+    let  lastTr = table.lastChild;
+    lastTr.append(td);
+  }
+}
+//используем встроенный объект Data.
+//его можно использовать для хранения времени создания/изменения, 
+//для измерения времени или просто для вывода текущей даты 
+/*let newData = new Date(); // выведет текущую дату и время
+alert(newData.getFullYear());//метод позволяет получить год 4 цифры
+alert(newData.getMonth());// от 0 до 11
+alert(newData.getDate());// от 1 до 31
+alert(newData.getTime());// возвращает таймстап
+alert(newData.getDay());// от 0 (воскресенье) до 6 (суббота)
+let newMonth = new Date(Date.parse('2012-01'));// метод Date.parse считывает строку и возвращает таймстап
+alert(newMonth);
+//вернем день недели:
+function getDayWeek(date) {
+  let dayWeek = week[date.getDay()];
+  return dayWeek;
+}*/
+
+createCalendar(task13, 2020, 2);
+
+// task#14
+//Создайте цветные часы как в примере
+function insertHeadline (where, text) {
+  let headerline = document.createElement("h2");
+  headerline.innerHTML = text;
+  where.prepend(headerline);
+  //where.prepend(headerline) - 
+  //вместо let whereAdd = document.gerElementById(where);
+  //whereAdd.prepend(headerline);
+  //но тогда при вызове функции в параметрах id указываем без ""
+}
+
+function createTimer (where){
+  insertHeadline(where, "task #14: создать цветные часы как в примере. p.s не работает кнопка стоп???"
+  );
+  //для создания часов буду использовать таблицу
+  let table = document.createElement("table");
+  table.id = "tableTask14"
+  where.append(table);
+  let row = document.createElement("tr");
+  table.prepend(row);
+
+  //напишем функцию, создающую ячейки часов
+  function addTd(tdName) {
+    let td = document.createElement("td");
+    td.id = tdName
+    row.append(td);
+  };
+
+  //напишем функцию, создающую объект даты и времени
+  function addAPIDate(datasEntry) {
+    let date = new Date();
+    if (datasEntry == "hours") {
+      let hours = (date.getHours() < 10) ? "0" + date.getHours() : date.getHours();
+      tdHours.innerHTML = hours;
+    } 
+    if (datasEntry == "minutes") {
+      let minutes = (date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes();
+      tdMinutes.innerHTML = minutes;
+    } 
+    if (datasEntry == "seconds") {
+      let seconds = (date.getSeconds() < 10) ? "0" + date.getSeconds() : date.getSeconds();
+      tdSeconds.innerHTML = seconds;
+    }
+  };
+
+  //напишем функцию для создания кнопок "пуск" и "стоп"
+  function createButton(where, innerText, id) {
+    let button = document.createElement("button");
+    button.innerHTML = innerText;
+    button.id = id;
+    where.append(button);
+  };
+
+  //напишем функцию, которая будет обновлять часы каждую секунду
+  //используем метод setInterval, который позволяет вызывать функцию регулярно, 
+  //повторяя вызов через определённый интервал времени.
+  //синтаксис: let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
+  //func/code - Функция или строка кода для выполнения. Обычно это функция
+  //delay - интеквал времени, через который часы будут обновляться в миллисекундах (1000 мс = 1 с). Значение по умолчанию – 0
+  //arg - Аргументы, передаваемые в функцию (не поддерживается в IE9-)
+  let timer;
+  function startTime(datasEntry) {
+    function addAPITimer() {
+      addAPIDate(datasEntry);//заменяю функцию с параметром на функцию без него, т.к setInterval не работает, если передаем функцию с параметром
+    }
+    timer = setInterval(addAPITimer, 1000);
+    addAPITimer(); //начать тут же, не ждать 1 секунду пока setInterval сработает
+  };
+  //Чтобы остановить дальнейшее выполнение функции, необходимо вызвать clearInterval(timer)
+
+  /*пробовала написать функции отдельно для каждого элемента часов, чтобы сработал "стоп" - без результата
+  function addAPIDataSeconds() {
+    let date = new Date();
+    let seconds = (date.getSeconds() < 10) ? "0" + date.getSeconds() : date.getSeconds();
+    tdSeconds.innerHTML = seconds;
+}
+
+  function startSeconds() {
+    timer = setInterval(addAPIDataSeconds, 1000);
+    addAPIDataSeconds();
+  }*/
+
+  addTd("tdHours");
+  addAPIDate("hours");
+  addTd("delimiter1");
+  delimiter1.innerHTML = ":";
+  addTd("tdMinutes");
+  addAPIDate("minutes");
+  addTd("delimiter2");
+  delimiter2.innerHTML = ":";
+  addTd("tdSeconds");
+  //addAPIDataSeconds();
+  addAPIDate("seconds");
+  createButton(where, "Пуск", "start");
+  createButton(where, "Стоп", "stop");
+
+  //добавим работу кнопок "старт" и "стоп". для этого можно использовать 
+  //как атрибуты html, такжу можно назначать обработчик, 
+  //используя свойство DOM-элемента on<событие>
+
+  //включаю таймер при помощи кнопки "старт"
+
+  /*function timeStart() {
+    startSeconds();
+  }
+
+  function timeStop() {
+    clearInterval(timer);
+    timer = null;
+  }*/
+
+  start.onclick = timeStart;
+  stop.onclick = timeStop;
+
+  function timeStart() {
+    startTime("hours");
+    startTime("minutes");
+    startTime("seconds");
+  }
+
+  //выключаю таймер при нажатии кнопки "стоп"
+  function timeStop() {//не работает???
+    clearInterval(timer);
+    timer = null;
+  }
+}
+
+createTimer(task14);
+
+//task15
+//вставить элементы 2, 3 между 1 и 4.
+
+function insertLi() {
+  insertHeadline(task15, "task #15: вставить пункты 2 и 3 между 1 и 4");
+  /*function createLi(id, innerText) {
+    let li = document.createElement("li");
+    li.id = id;
+    li.innerHTML = innerText;
+    let ul = document.getElementById("ulTask15");
+    //console.log(ul);
+    console.dir(ul);
+    let whereInsert = ul.lastElementChild;
+    whereInsert.before(li);
+  }
+  createLi("two", "2");
+  createLi("three", "3");*/
+  //или 
+  //огда нам необходимо вставить фрагмент HTML-кода, можно использовать 
+  //insertAdjacentHTML, он лучше всего подходит для таких задач
+  one.insertAdjacentHTML("afterend", "<li>2</li><li>3</li>");
+}
+
+insertLi();
+
+function sortTable(id, nameForSort) {
+  insertHeadline(task16, "task #16: Напишите код для сортировки таблицы по столбцу name");
+  //получим коллекцию строк таблицы:
+  let collectionRows = id.rows;
+  //чтобы применить дальше к коллекции методы массива - преобразуем ее в массив
+  let arrayRows = Array.from(collectionRows);
+  //из данного массива нам не нужен 1-й элемент, т.к. это заголовок
+  //использую метод slice(), чтобы создать копию части массива
+  //arrayRows.slice(1);
+  //console.log(arrayRows.slice(1));
+  //получим элемент с nameForSort
+  let th = document.getElementById(nameForSort);
+  //получим номер интересующего нас столбца
+  let collIndex = th.cellIndex;
+  //использую метод масива arr.sort(fn) для сортировки массива
+  //и замены порядка элементов в нем.
+  //arrayRows.sort(fn)
+  //при сравнении sort() элементы сортируются как строки
+  /*function compareString(rowA, rowB) {
+    /*for (let i = 1; i < arrayRows.length; i++) {
+    //получим коллекцию ячеек каждой строки
+    let collectionTd = arrayRows[i].children;
+    //получим из каждой строки содержимое нужной ячейки:
+    let cell = collectionTd[collIndex];
+    let cellInnerText = cell.innerHTML;
+    //нужно сравнить содержимое всех ячеек и отсортировать строки 
+    }*/
+    //для упрощения записи, используем функцию-стрелку
+    //функция-стрелка: let func = (arg1, arg2 ... argN) => expression
+    //Такой код создаёт функцию func с аргументами arg1..argN и вычисляет expression 
+    //с правой стороны с их использованием, возвращая результат.
+
+    //при сравнении значений используем тернарный оператор
+    //тернарный оператор: условие ? выражение1 : выражение2
+    //от функции сравнения требуется любое положительное число, чтобы сказать «больше», 
+    //и отрицательное число, чтобы сказать «меньше»
+
+    let compareString = (rowA, rowB) => rowA.cells[collIndex].innerHTML > rowB.cells[collIndex].innerHTML ? 1 : -1;
+    arrayRows.slice(1).sort(compareString);
+    console.log(arrayRows.slice(1).sort(compareString));
+    //вставим полученный отсортированный массив:
+    id.tBodies[0].append(...arrayRows.slice(1).sort(compareString));
+}
+
+sortTable(tableTask16, "surname");
