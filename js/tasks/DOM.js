@@ -784,3 +784,66 @@ function sortTable(id, nameForSort) {
 }
 
 sortTable(tableTask16, "surname");
+
+//Перепишите if с использованием условного оператора '?':
+
+/*let result;
+
+if (a + b < 4) {
+  result = 'Мало';
+} else {
+  result = 'Много';
+}*/
+
+/*function result() {
+  let a = Number(prompt("a"));
+  let b = Number(prompt("b"));
+  let c = a + b;
+  (c < 4) ? alert("мало") : alert("много");
+}*/
+
+//перепишу с аргументами и с использованием функций стрелок
+/*function result(condition, yes, no) {
+  condition() > 4 ? yes() : no();
+}
+
+result(
+  () => {
+    let a = Number(prompt("a"));
+    let b = Number(prompt("b"));
+    let c = a + b;
+    return c;
+  },  
+  () => alert("yes"),
+  () => alert("no"));*/
+  //перепишу с аргументами без использования функций стрелок
+  /*function result(condition, yes, no) {
+    Number(condition()) > 4 ? yes() : no();//не работае, если без(), () "говорят", что параметры - функции
+  }
+result (
+  function() {
+    let a = Number(prompt("a"));
+    let b = Number(prompt("b"));
+    let c = a + b;
+    return c;
+  },
+  function() {alert("yes");}, 
+  function() {alert("no");}
+  );*/
+//перепишу, объявив функции, которые в переменных, отдельно
+function result() {
+  condition() > 4 ? yes() : no();
+}
+function condition() {
+  let a = Number(prompt("a"));
+  let b = Number(prompt("b"));
+  let c = a + b;
+  return c;
+}
+function yes() {
+  alert("yes");
+}
+function no() {
+  alert("no");
+}
+//result();
