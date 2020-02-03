@@ -460,7 +460,7 @@ function camelize(str) {
 } 
 
 let str = "my-short-string";
-camelize(str);
+// camelize(str);
 
 //task 20
 //Напишите функцию filterRange(arr, a, b), которая принимает массив arr, 
@@ -617,14 +617,14 @@ function Calculator(){
   
   let calc = new Calculator;
   
-  console.log( calc.calculate("3 + 7") ); // 10
+  // console.log( calc.calculate("3 + 7") ); // 10
   let powerCalc = new Calculator;
   powerCalc.addMethod("*", (a, b) => a * b);
   powerCalc.addMethod("/", (a, b) => a / b);
   powerCalc.addMethod("**", (a, b) => a ** b);
   
   let result = powerCalc.calculate("2 ** 3");
-  console.log( result ); // 8
+  // console.log( result ); // 8
 
 // task 24
 // У вас есть массив объектов, и в каждом из них есть свойство name. 
