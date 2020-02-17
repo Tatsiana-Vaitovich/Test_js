@@ -68,7 +68,7 @@ function getCoords(elem) {
 
 // getCoords("get-coords");
 
-// task#3
+// task#4
 // Создайте функцию positionAt(anchor, position, elem), которая позиционирует элемент elem 
 // в зависимости от значения свойства position рядом с элементом anchor.
 // Аргумент position – строка с одним из 3 значений:
@@ -118,7 +118,7 @@ function getCoords(elem) {
 showNotePositionFixed("blockquote", "div", "left", "note");
 showNotePositionFixed("blockquote", "div", "bottom", "note");*/
 
-// task#4
+// task#5
 // Измените код решения предыдущего задания так, чтобы элемент заметки использовал свойство position:absolute вместо position:fixed.
 // Это предотвратит расхождение элементов при прокрутке страницы.
 // Используйте решение предыдущего задания для начала. 
@@ -162,7 +162,7 @@ function showNotePositionAbsolute(anchor, elem, position, html) {
 showNotePositionAbsolute("blockquote", "div", "left", "note");
 showNotePositionAbsolute("blockquote", "div", "bottom", "note");*/
 
-// task#5 
+// task#6 
 // Усовершенствуйте решение предыдущего задания Покажите заметку около элемента (абсолютное позиционирование): научите функцию positionAt(anchor, position, elem) вставлять elem внутрь anchor.
 // Новые значения для аргумента position:
 // top-out, right-out, bottom-out – работают так же, как раньше,

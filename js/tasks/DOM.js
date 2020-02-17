@@ -597,7 +597,7 @@ function insertHeadline (where, text) {
 }
 
 function createTimer (where){
-  insertHeadline(where, "task #14: создать цветные часы как в примере. p.s не работает кнопка стоп???"
+  insertHeadline(where, "task #14: создать цветные часы как в примере. p.s не работает кнопка стоп??? DOM.js"
   );
   //для создания часов буду использовать таблицу
   let table = document.createElement("table");

@@ -33,7 +33,7 @@
         padding: 20px;
         overflow: auto;
       }
-      div[id=get-coords] {
+      div[id=get_coords] {
         overflow: hidden;
         width: 200px;
         height: 150px;
@@ -70,6 +70,115 @@
         line-height: .1em;
         margin-right: .25em;
         vertical-align: -.4em;
+      }
+      .menu {
+        width: 50%;
+      }
+      .menu_title {
+        margin: 10px;
+        border: 1px solid grey;
+        cursor: pointer;
+      }
+      .menu_title::before {
+        content: "▲";
+        margin-right: 10px;
+        color: #ccc;
+      }
+      .title_close::before {
+        content: "▼";
+      }
+      .list {
+        visibility: visible;
+      }
+      .close {
+        visibility: hidden;
+      }
+      .messages {
+        width: 50%;
+        padding: 10px;
+        background-color: lightgrey;
+      }
+      .message {
+        border-top: 2px solid #E8C48F;
+      }
+      .message__header-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+      .message__header {
+        margin: 0;
+      }
+      .message__header-button {
+        padding: 5px;
+        width: 20px;
+        height: 20px;
+      }
+      .message__header-button:hover {
+        cursor: pointer;
+        background-color: rosybrown;
+      }
+      .message__text {
+        color: gray;
+      }
+      .remove {
+        display: none;
+      }
+      .slider {
+        position: relative;
+        width: 50%;
+        height: 150px;
+        border-radius: 10px;
+        border: 2px solid #000;
+        background-color: lightgray;
+        overflow: hidden;
+      }
+      .arrow {
+        display: block;
+        z-index: 1;
+        width: 50px;
+        height: 50px;
+        border-radius: 40%;
+      }
+      .arrow:focus {
+        outline: none;
+      }
+      .slider__arrow {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translate(0, -50%);
+      }
+      .slider__arrow--right {
+        left: auto;;
+        right: 10px;
+      }
+      .slides {
+        display: flex;
+        align-items: center;
+        height: inherit;
+        margin: 0;
+        padding: 0;
+        transition: transform  1s linear;
+      }
+      .slide {
+        z-index: 0;
+        flex: 0 0 33.3%;
+        max-width: 33.3%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        list-style: none;
+      }
+      /* по умолчанию img - inline-block. 
+      у них после добавляются дополнительные промежутки
+      и выравнивание было бы не margin, а text-align*/
+      .slide img {
+        display: block;
+        margin: 0 auto;
+      }
+      .card-photo__img {
+        width: 200px;
+        height: 200px;
       }
     </style>
   </head>
@@ -204,9 +313,14 @@
         </tr>
       </table>
     </div>
-    <div id="get-coords">
+    <div>
+      <h2>task#3: найти координаты внешних и внутренних углов элемента styles-and-classes.js</h2>
+      <div id="get_coords">
+        <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      </div>
     </div>
     <div id="get-note">
+      <h2>task# 4-6: создать функцию, которая позиционирует note относительно anchor styles-and-classes.js</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.
       </p>
@@ -220,8 +334,99 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.
       </p>
     </div>
+    <div id="event_tasks">
+      <h2>События; styles-and-classes.js</h2>
+      <button onclick="console.log('кнопка1 нажата')">button1</button>
+      <!--html не чувствителен к регистру-->
+      <button ONCLICK="console.log('кнопка2 нажата')">button2</button>
+      <button id="button3" onclick="countClick()">button3</button>
+      <button id="button4">button4</button>
+      <button id="button5" onclick="console.log(this.innerHTML)">button5</button>
+      <div id="text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.</p>
+      </div>
+        <button id="button6">скрыть текст выше</button>
+    </div>
+    <div id="task4">
+      <h2>task#4 Есть список сообщений. При помощи JavaScript для каждого сообщения добавьте в верхний правый угол кнопку закрытия. events.js</h2>
+      <div class="messages"> 
+        <div class="message">
+          <div class="message__header-wrapper">
+            <h2 class="message__header">Сообщение 1</h2>
+          </div>
+          <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.</p>
+        </div>
+        <div class="message">
+          <div class="message__header-wrapper">
+            <h2 class="message__header">Сообщение 2</h2>
+          </div>
+          <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.</p>
+        </div>
+        <div class="message">
+          <div class="message__header-wrapper">
+            <h2 class="message__header">Сообщение 3</h2>
+          </div>
+          <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae esse sequi officia sapiente.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>task#5 Создайте «Карусель» –- ленту изображений, которую можно листать влево-вправо нажатием на стрелочки. events.js</h2>
+    <div class="slider">
+      <button id="arrow-left" class="arrow slider__arrow">⇦</button>
+      <button id="arrow-right" class="arrow slider__arrow slider__arrow--right">⇨</button>
+      <ul class="slides">
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/1.png">
+          <!--начинаю следующий li на той же строке, что и /li 
+          чтобы убрать лишнее пространство после inline-block-->
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/2.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/3.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/4.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/5.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/6.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/7.png">
+        </li><li class="slide">
+          <img src="https://ru.js.cx/carousel/8.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/9.png">
+        </li>
+        <li class="slide">
+          <img src="https://ru.js.cx/carousel/10.png">
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div class="card-photo">
+      <div class="card-photo__img"></div>
+      <div class="card-photo__description description-photo">
+        <div class="description-photo__like like">
+          <h3 class="like__header">I like!</h3>
+          <span class="like__counter"></span>
+        </div>
+        <div class="description-photo__commetns comments">
+          <h3 class="comments__header">Comments:</h3>
+          <span class="comments__counter"></span>
+        </div>
+      </div>
+    </div>
+
     <script type="text/javascript" src="js/tasks/DOM.js"></script>
     <script type="text/javascript" src="js/massive.js"></script>
     <script type="text/javascript" src="js/tasks/styles-and-classes.js"></script>
+    <script type="text/javascript" src="js/tasks/events.js"></script>
   </body>
 </html>
